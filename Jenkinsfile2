@@ -1,0 +1,7 @@
+node {
+  stage ('scm-checkout') {
+  git 'https://github.com/Sudheerkunda/my-app.git'
+  }
+  stage ('mvn-package')
+  sh 'mvn clean package'
+}
