@@ -7,7 +7,7 @@ node {
   }
   stage ('sonarqube') {
   WithSonarQubeEnv('sonar-1') {
-  sh "sonar:sonar"
+  sh "mvn sonar:sonar"
 }
 }
 }
