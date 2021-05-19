@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('SCM'){
+            steps{
+                git credentialsId: 'github', url: 'https://github.com/Sudheerkunda/my-app'
+            }
+        }
+        stage('Maven-build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage('deploy'){
+            steps{
+             sshagent(['tomcat']) {
+              sh """
+               scp -o StrictHostKeyChecking=no target/*.war ec2-user@34.224.79.206:/opt/tomcat/webapps/
+            
+               """
+              }
+            }
+        }
+    }
+}
