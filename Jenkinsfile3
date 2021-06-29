@@ -11,7 +11,7 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        stage('Maven-build'){
+        stage('nexus'){
             steps{
                 nexusArtifactUploader artifacts: [[artifactId: 'in.javahome', classifier: '', 
                 file: 'target/myweb-0.0.15.war', type: 'war']], credentialsId: 'nexus3', groupId: 'in.javahome', 
